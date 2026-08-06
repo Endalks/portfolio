@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { User, Target, Zap, ShieldCheck } from "lucide-react";
+import aboutImg from "../../public/about-me2.jpg";
 
 export function About() {
   return (
@@ -33,18 +34,16 @@ export function About() {
             viewport={{ once: true, margin: "-100px" }}
             className="relative"
           >
-            {/* Branding Image Container */}
             <div className="aspect-square relative rounded-3xl overflow-hidden glass border border-white/10 p-2">
               <div className="w-full h-full rounded-2xl overflow-hidden relative">
                 <img
-                  src="/about-me2.jpg"
+                  src={aboutImg.src}
                   alt="Abian Branding"
                   className="w-full h-full object-cover"
                 />
               </div>
             </div>
             
-            {/* Floating Badge */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
