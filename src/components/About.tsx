@@ -33,7 +33,7 @@ export function About() {
             viewport={{ once: true, margin: "-100px" }}
             className="relative"
           >
-            {/* ሁለተኛው ፎቶ የተቀመጠበት ቦታ */}
+            {/* Branding Image Container */}
             <div className="aspect-square relative rounded-3xl overflow-hidden glass border border-white/10 p-2">
               <div className="w-full h-full rounded-2xl overflow-hidden relative">
                 <img
