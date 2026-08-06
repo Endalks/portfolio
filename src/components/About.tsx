@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { User, Target, Zap, ShieldCheck } from "lucide-react";
-import aboutImg from "../../public/about-me2.jpg";
 
 export function About() {
   return (
@@ -37,7 +36,7 @@ export function About() {
             <div className="aspect-square relative rounded-3xl overflow-hidden glass border border-white/10 p-2">
               <div className="w-full h-full rounded-2xl overflow-hidden relative">
                 <img
-                  src={aboutImg.src}
+                  src="/about-me2.jpg"
                   alt="Abian Branding"
                   className="w-full h-full object-cover"
                 />
