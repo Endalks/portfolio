@@ -25,6 +25,7 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
+  // Auto-generate message based on service and budget unless user manually edits it
   useEffect(() => {
     if (!hasEditedMessage) {
       const autoMessage = `Hello Endale,\n\nI am interested in building a ${formState.service} ${
@@ -70,15 +71,30 @@ export function Contact() {
     return isValid;
   };
 
+  // Send via Telegram with generated message and sender name
   const handleSendTelegram = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
+    const telegramUsername = "abianas19"; // Your Telegram username
+    const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`;
+    const encodedUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
+    
+    window.open(encodedUrl, "_blank");
     setIsSent(true);
   };
 
+  // Send via Gmail with generated message and sender details
   const handleSendGmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
+    const recipientEmail = "endalegebeyehu824@gmail.com";
+    const subject = encodeURIComponent(`New Inquiry from ${formState.name} - ${formState.service}`);
+    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`);
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
+
+    window.open(gmailUrl, "_blank");
     setIsSent(true);
   };
 
@@ -189,7 +205,7 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Social Icons: GitHub, LinkedIn, and Telegram with hover effect */}
+            {/* Social Icons: GitHub, LinkedIn, and Telegram */}
             <div className="flex items-center gap-4 pt-6 relative z-20">
               <a 
                 href="https://github.com/Endalks" 
@@ -236,9 +252,9 @@ export function Contact() {
                   className="py-12 text-center space-y-4"
                 >
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
+                  <h4 className="text-2xl font-bold text-white">Redirecting / Sent!</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
-                    Thank you for reaching out. I will get back to you soon!
+                    Your message has been prepared and opened in Telegram/Gmail. Feel free to send another message!
                   </p>
                   <button
                     type="button"
@@ -392,18 +408,18 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Telegram Widget: Container shape stays constant, only internal icon bounces smoothly */}
+      {/* Floating Telegram Widget: Fixed circular container with fast & smooth internal wave motion */}
       <a
         href="https://t.me/abianas19"
         target="_blank"
         rel="noreferrer"
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto group"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto"
         title="Chat on Telegram"
       >
         <motion.div
-          animate={{ y: [-3, 3, -3] }}
+          animate={{ y: [-4, 4, -4] }}
           transition={{ 
-            duration: 1, 
+            duration: 0.6, 
             repeat: Infinity, 
             repeatType: "loop",
             ease: "easeInOut" 
