@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Copy, Check, CheckCircle2, AlertCircle } from "lucide-react";
 import { FaGithub as Github, FaLinkedin as Linkedin, FaTelegramPlane as TelegramIcon } from "react-icons/fa";
+import { supabase } from "@/lib/supabase";
 
 export function Contact() {
   const [formState, setFormState] = useState({ 
@@ -71,6 +72,25 @@ export function Contact() {
     return isValid;
   };
 
+  // Function to save contact message to Supabase
+  const saveToSupabase = async () => {
+    try {
+      const { error } = await supabase.from("contacts").insert([
+        {
+          name: formState.name,
+          email: formState.email,
+          message: `Service: ${formState.service} | Budget: ${formState.budget}\n\n${formState.message}`,
+        },
+      ]);
+
+      if (error) {
+        console.error("Error saving to Supabase:", error.message);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  };
+
   const telegramUsername = "abianas19";
   const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`;
   const telegramHref = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
@@ -80,19 +100,21 @@ export function Contact() {
   const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`);
   const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
 
-  const handleSendTelegram = (e: React.MouseEvent) => {
+  const handleSendTelegram = async (e: React.MouseEvent) => {
     if (!validateForm()) {
       e.preventDefault();
       return;
     }
+    await saveToSupabase();
     setIsSent(true);
   };
 
-  const handleSendGmail = (e: React.MouseEvent) => {
+  const handleSendGmail = async (e: React.MouseEvent) => {
     if (!validateForm()) {
       e.preventDefault();
       return;
     }
+    await saveToSupabase();
     setIsSent(true);
   };
 
@@ -409,7 +431,6 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Telegram Widget wrapped in a fixed div to fix the animation bug */}
       <div className="fixed bottom-6 right-6 z-50 pointer-events-auto">
         <motion.a
           href="https://t.me/abianas19"
