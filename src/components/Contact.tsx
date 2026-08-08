@@ -96,10 +96,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden select-none">
+    <section id="contact" className="py-24 relative overflow-hidden">
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] -z-10 mix-blend-screen" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -189,12 +189,12 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 pt-6">
+            <div className="flex items-center gap-4 pt-6 relative z-20">
               <a 
                 href="https://github.com/Endalks" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer pointer-events-auto"
                 title="GitHub"
               >
                 <Github size={20} />
@@ -204,7 +204,7 @@ export function Contact() {
                 href="https://www.linkedin.com/in/endale-gebeyehu" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#0077b5] hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#0077b5] hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer pointer-events-auto"
                 title="LinkedIn"
               >
                 <Linkedin size={20} />
@@ -214,9 +214,18 @@ export function Contact() {
                 href="https://t.me/abianas19" 
                 target="_blank" 
                 rel="noreferrer" 
-                whileHover={{ scale: 1.15, rotate: 5 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#229ED9] hover:text-white transition-all cursor-pointer shadow-lg"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 15, -15, 0],
+                  y: [0, -5, 0]
+                }}
+                transition={{ 
+                  duration: 1.5, 
+                  repeat: Infinity, 
+                  repeatType: "loop",
+                  ease: "easeInOut" 
+                }}
+                className="w-12 h-12 rounded-full bg-[#229ED9]/20 border border-[#229ED9]/50 flex items-center justify-center text-[#229ED9] hover:bg-[#229ED9] hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(34,158,217,0.4)] pointer-events-auto relative z-30"
                 title="Telegram"
               >
                 <TelegramIcon size={20} />
@@ -368,14 +377,28 @@ export function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                    <button
+                    <motion.button
                       type="button"
                       onClick={handleSendTelegram}
+                      animate={{ 
+                        scale: [1, 1.03, 1],
+                        boxShadow: [
+                          "0 0 10px rgba(34,158,217,0.3)", 
+                          "0 0 25px rgba(34,158,217,0.7)", 
+                          "0 0 10px rgba(34,158,217,0.3)"
+                        ]
+                      }}
+                      transition={{ 
+                        duration: 1.8, 
+                        repeat: Infinity, 
+                        repeatType: "loop",
+                        ease: "easeInOut" 
+                      }}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#229ED9] text-white rounded-xl font-bold hover:bg-[#1f8ebd] transition-all group/btn shadow-lg cursor-pointer"
                     >
                       Via Telegram
                       <TelegramIcon size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    </motion.button>
 
                     <button
                       type="button"
