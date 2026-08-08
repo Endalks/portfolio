@@ -71,16 +71,21 @@ export function Contact() {
     return isValid;
   };
 
-  const handleSendTelegram = (e: React.FormEvent) => {
+  // Telegram መላኪያ ሎጂክ
+  const handleSendTelegram = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
 
-    const formattedText = `Hi Endale,%0A%0A*New Project Request*%0A👤 *Name:* ${encodeURIComponent(formState.name)}%0A📧 *Email:* ${encodeURIComponent(formState.email)}%0A💻 *Service:* ${encodeURIComponent(formState.service)}%0A💰 *Budget:* ${encodeURIComponent(formState.budget)}%0A%0A📝 *Details:*%0A${encodeURIComponent(formState.message)}`;
+    const formattedText = `Hi Endale,\n\n*New Project Request*\n- Name: ${formState.name}\n- Email: ${formState.email}\n- Service: ${formState.service}\n- Budget: ${formState.budget}\n\nDetails:\n${formState.message}`;
     
-    window.open(`https://t.me/abianas19?text=${formattedText}`, "_blank");
+    const telegramUrl = `https://t.me/abianas19?text=${encodeURIComponent(formattedText)}`;
+    
+    // አዲስ ታብ ከፍቶ ወደ ቴሌግራም እንዲወስድ እና መረጃውን እንዲጭን ያደርጋል
+    window.open(telegramUrl, "_blank");
     setIsSent(true);
   };
 
+  // Gmail መላኪያ ሎጂክ
   const handleSendGmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -88,10 +93,9 @@ export function Contact() {
     const subject = `New Inquiry from ${formState.name} (${formState.service})`;
     const body = `Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\nProject Details:\n${formState.message}`;
     
-    window.open(
-      `https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`,
-      "_blank"
-    );
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    window.open(gmailUrl, "_blank");
     setIsSent(true);
   };
 
@@ -238,16 +242,13 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Form Column - Secured & Animated */}
+          {/* Right Form Column */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <form 
-              onSubmit={handleSendTelegram} 
-              className="glass p-8 rounded-2xl space-y-6 border border-white/10 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_35px_rgba(168,85,247,0.2)] hover:-translate-y-1 group relative overflow-hidden"
-            >
+            <div className="glass p-8 rounded-2xl space-y-6 border border-white/10 transition-all duration-500 hover:border-primary/50 hover:shadow-[0_0_35px_rgba(168,85,247,0.2)] group relative overflow-hidden">
               {isSent ? (
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
@@ -257,7 +258,7 @@ export function Contact() {
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
                   <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
-                    Thank you for reaching out. I will get back to you as soon as possible!
+                    Thank you for reaching out. Your message has been opened in Telegram / Gmail!
                   </p>
                   <button
                     type="button"
@@ -268,7 +269,7 @@ export function Contact() {
                   </button>
                 </motion.div>
               ) : (
-                <>
+                <div className="space-y-6">
                   <div className="grid grid-cols-2 gap-6">
                     {/* Name Input */}
                     <div className="relative group/input">
@@ -391,7 +392,8 @@ export function Contact() {
                   {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
                     <button
-                      type="submit"
+                      type="button"
+                      onClick={handleSendTelegram}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#229ED9] text-white rounded-xl font-bold hover:bg-[#1f8ebd] transition-all group/btn shadow-lg cursor-pointer"
                     >
                       Via Telegram
@@ -407,32 +409,12 @@ export function Contact() {
                       <Mail size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                   </div>
-                </>
+                </div>
               )}
-            </form>
+            </div>
           </motion.div>
         </div>
       </div>
-
-      {/* Floating Telegram Button */}
-      <motion.div
-        className="fixed bottom-6 right-6 z-50"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <motion.a
-          href="https://t.me/abianas19"
-          target="_blank"
-          rel="noreferrer"
-          whileHover={{ scale: 1.15, rotate: 12 }}
-          whileTap={{ scale: 0.9 }}
-          className="relative w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-2xl cursor-pointer block"
-          title="Chat on Telegram"
-        >
-          <span className="absolute inset-0 rounded-full bg-[#229ED9] animate-ping opacity-25" />
-          <TelegramIcon size={24} className="relative z-10" />
-        </motion.a>
-      </motion.div>
     </section>
   );
 }
