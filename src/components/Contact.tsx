@@ -73,23 +73,12 @@ export function Contact() {
   const handleSendTelegram = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
-    // Form data-ን ወደ ቴሌግራም ቻት በሊንክ መልክ ማስተላለፍ
-    const text = `Hello Endale, my name is ${formState.name} (${formState.email}). I need a ${formState.service} with a budget of ${formState.budget}. Details: ${formState.message}`;
-    const url = `https://t.me/abianas19?text=${encodeURIComponent(text)}`;
-    window.open(url, '_blank');
     setIsSent(true);
   };
 
   const handleSendGmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-    
-    // Form data-ን ወደ ጅሜል ማስተላለፍ
-    const subject = `Project Inquiry: ${formState.service} from ${formState.name}`;
-    const body = `Hello Endale,\n\nMy name is ${formState.name} (${formState.email}).\n\nI am interested in a ${formState.service} with a budget of ${formState.budget}.\n\nDetails:\n${formState.message}`;
-    const url = `https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(url, '_blank');
     setIsSent(true);
   };
 
@@ -402,7 +391,7 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Constant Telegram Widget with Normal Wave/Bounce Animation */}
+      {/* Floating Constant Telegram Widget with Normal Non-stop Wave Animation */}
       <motion.a
         href="https://t.me/abianas19"
         target="_blank"
