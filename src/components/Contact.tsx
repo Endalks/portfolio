@@ -246,17 +246,17 @@ export function Contact() {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="py-12 text-center space-y-4"
+                  className="py-12 text-center space-y-6 flex flex-col items-center justify-center h-full"
                 >
-                  <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
-                  <p className="text-muted-foreground max-w-sm mx-auto">
-                    Your message has been successfully generated and opened in a new tab. Feel free to send another!
+                  <CheckCircle2 size={64} className="text-green-500 animate-bounce mb-2" />
+                  <h4 className="text-3xl font-bold text-white tracking-wide">Sent Successfully!</h4>
+                  <p className="text-muted-foreground text-lg max-w-sm mx-auto leading-relaxed">
+                    Thank you for reaching out! I have received your message and will get back to you very soon.
                   </p>
                   <button
                     type="button"
                     onClick={handleResetForm}
-                    className="mt-4 px-6 py-2.5 bg-primary/20 text-primary border border-primary/30 rounded-xl hover:bg-primary/30 hover:scale-105 transition-all cursor-pointer font-medium"
+                    className="mt-6 px-8 py-3 bg-primary/20 text-primary border border-primary/30 rounded-xl hover:bg-primary/30 hover:scale-105 transition-all cursor-pointer font-medium shadow-lg"
                   >
                     Send Another Message
                   </button>
@@ -409,23 +409,24 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Telegram Widget with Non-stop, Fast, and Clear Wave Motion */}
-      <motion.a
-        href="https://t.me/abianas19"
-        target="_blank"
-        rel="noreferrer"
-        animate={{ y: [-8, 8, -8] }}
-        transition={{ 
-          duration: 0.35, 
-          repeat: Infinity, 
-          repeatType: "loop",
-          ease: "easeInOut" 
-        }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto"
-        title="Chat on Telegram"
-      >
-        <TelegramIcon size={26} />
-      </motion.a>
+      {/* Floating Telegram Widget wrapped in a fixed div to fix the animation bug */}
+      <div className="fixed bottom-6 right-6 z-50 pointer-events-auto">
+        <motion.a
+          href="https://t.me/abianas19"
+          target="_blank"
+          rel="noreferrer"
+          animate={{ y: [0, -15, 0] }}
+          transition={{ 
+            duration: 1.2, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          className="w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-transform cursor-pointer"
+          title="Chat on Telegram"
+        >
+          <TelegramIcon size={26} />
+        </motion.a>
+      </div>
     </section>
   );
 }
