@@ -25,12 +25,11 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  // Dynamic Auto-Generated Message Template Effect
   useEffect(() => {
     if (!hasEditedMessage) {
       const autoMessage = `Hello Endale,\n\nI am interested in building a ${formState.service} ${
         formState.budget ? `with a budget of ${formState.budget}` : 'and would like to request a quote'
-      }.\n\nLet's discuss further!`;
+      }.\n\nLet\'s discuss further!`;
 
       setFormState((prev) => ({ ...prev, message: autoMessage }));
     }
@@ -71,35 +70,16 @@ export function Contact() {
     return isValid;
   };
 
-  // Telegram መላኪያ (በስልክ እና ፒሲ በአስተማማኝ ሁኔታ እንዲከፈት window.location.href ይጠቀማል)
   const handleSendTelegram = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
-    const formattedText = `Hi Endale,\n\n*New Project Request*\n- Name: ${formState.name}\n- Email: ${formState.email}\n- Service: ${formState.service}\n- Budget: ${formState.budget}\n\nDetails:\n${formState.message}`;
-    
-    const telegramUrl = `https://t.me/abianas19?text=${encodeURIComponent(formattedText)}`;
-    
     setIsSent(true);
-    setTimeout(() => {
-      window.location.href = telegramUrl;
-    }, 500);
   };
 
-  // Gmail መላኪያ
   const handleSendGmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
-
-    const subject = `New Inquiry from ${formState.name} (${formState.service})`;
-    const body = `Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\nProject Details:\n${formState.message}`;
-    
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    
     setIsSent(true);
-    setTimeout(() => {
-      window.location.href = gmailUrl;
-    }, 500);
   };
 
   const handleResetForm = () => {
@@ -138,7 +118,6 @@ export function Contact() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-16">
-          {/* Left Info Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -245,7 +224,6 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Right Form Column */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -259,9 +237,9 @@ export function Contact() {
                   className="py-12 text-center space-y-4"
                 >
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Redirecting...</h4>
+                  <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
-                    Opening your app with the message details!
+                    Thank you for reaching out. I will get back to you soon!
                   </p>
                   <button
                     type="button"
@@ -274,7 +252,6 @@ export function Contact() {
               ) : (
                 <div className="space-y-6">
                   <div className="grid grid-cols-2 gap-6">
-                    {/* Name Input */}
                     <div className="relative group/input">
                       <input
                         type="text"
@@ -302,7 +279,6 @@ export function Contact() {
                       )}
                     </div>
 
-                    {/* Email Input */}
                     <div className="relative group/input">
                       <input
                         type="email"
@@ -363,7 +339,6 @@ export function Contact() {
                     </div>
                   </div>
 
-                  {/* Message Input */}
                   <div className="relative group/input pt-4">
                     <textarea
                       name="message"
@@ -392,7 +367,6 @@ export function Contact() {
                     )}
                   </div>
 
-                  {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
                     <button
                       type="button"
