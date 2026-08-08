@@ -71,7 +71,6 @@ export function Contact() {
     return isValid;
   };
 
-  // Helper links for direct navigation without browser blocking
   const telegramUsername = "abianas19";
   const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`;
   const telegramHref = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
@@ -204,7 +203,6 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Social Icons */}
             <div className="flex items-center gap-4 pt-6 relative z-20">
               <a 
                 href="https://github.com/Endalks" 
@@ -251,7 +249,7 @@ export function Contact() {
                   className="py-12 text-center space-y-4"
                 >
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Message Prepared!</h4>
+                  <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
                     Your message has been successfully generated and opened in a new tab. Feel free to send another!
                   </p>
@@ -382,7 +380,6 @@ export function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                    {/* Direct Telegram Anchor Link to prevent browser blocking */}
                     <a
                       href={telegramHref}
                       target="_blank"
@@ -394,7 +391,6 @@ export function Contact() {
                       <TelegramIcon size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                     </a>
 
-                    {/* Direct Gmail Anchor Link */}
                     <a
                       href={gmailHref}
                       target="_blank"
@@ -413,27 +409,23 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Telegram Widget with Fast, Clear, and Non-stop Wave Motion */}
-      <a
+      {/* Floating Telegram Widget with Non-stop, Fast, and Clear Wave Motion */}
+      <motion.a
         href="https://t.me/abianas19"
         target="_blank"
         rel="noreferrer"
+        animate={{ y: [-8, 8, -8] }}
+        transition={{ 
+          duration: 0.35, 
+          repeat: Infinity, 
+          repeatType: "loop",
+          ease: "easeInOut" 
+        }}
         className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto"
         title="Chat on Telegram"
       >
-        <motion.div
-          animate={{ y: [-6, 6, -6] }}
-          transition={{ 
-            duration: 0.45, 
-            repeat: Infinity, 
-            repeatType: "loop",
-            ease: "easeInOut" 
-          }}
-          className="flex items-center justify-center"
-        >
-          <TelegramIcon size={26} />
-        </motion.div>
-      </a>
+        <TelegramIcon size={26} />
+      </motion.a>
     </section>
   );
 }
