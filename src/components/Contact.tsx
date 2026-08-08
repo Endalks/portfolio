@@ -189,6 +189,7 @@ export function Contact() {
               </div>
             </div>
 
+            {/* Social Icons: GitHub, LinkedIn, and Telegram with exact same hover effect */}
             <div className="flex items-center gap-4 pt-6 relative z-20">
               <a 
                 href="https://github.com/Endalks" 
@@ -214,7 +215,7 @@ export function Contact() {
                 href="https://t.me/abianas19" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#229ED9] hover:text-white transition-all cursor-pointer pointer-events-auto"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#229ED9] hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer pointer-events-auto"
                 title="Telegram"
               >
                 <TelegramIcon size={20} />
@@ -391,21 +392,22 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Constant Telegram Widget with Normal Non-stop Wave Animation */}
+      {/* Floating Constant Telegram Widget with Fast, Smooth Non-Stop Motion/Wave Animation */}
       <motion.a
         href="https://t.me/abianas19"
         target="_blank"
         rel="noreferrer"
         animate={{ 
-          y: [0, -8, 0],
+          y: [0, -12, 0],
+          scale: [1, 1.05, 1]
         }}
         transition={{ 
-          duration: 2, 
+          duration: 1.2, 
           repeat: Infinity, 
           repeatType: "loop",
           ease: "easeInOut" 
         }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_20px_rgba(34,158,217,0.5)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto"
         title="Chat on Telegram"
       >
         <TelegramIcon size={26} />
