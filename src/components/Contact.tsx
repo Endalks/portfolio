@@ -25,7 +25,7 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  // Auto-generate message based on service and budget unless user manually edits it
+  // Auto-generate message based on service and budget
   useEffect(() => {
     if (!hasEditedMessage) {
       const autoMessage = `Hello Endale,\n\nI am interested in building a ${formState.service} ${
@@ -71,30 +71,29 @@ export function Contact() {
     return isValid;
   };
 
-  // Send via Telegram with generated message and sender name
-  const handleSendTelegram = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
+  // Helper links for direct navigation without browser blocking
+  const telegramUsername = "abianas19";
+  const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`;
+  const telegramHref = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
 
-    const telegramUsername = "abianas19"; // Your Telegram username
-    const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`;
-    const encodedUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
-    
-    window.open(encodedUrl, "_blank");
+  const recipientEmail = "endalegebeyehu824@gmail.com";
+  const subject = encodeURIComponent(`New Inquiry from ${formState.name} - ${formState.service}`);
+  const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`);
+  const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
+
+  const handleSendTelegram = (e: React.MouseEvent) => {
+    if (!validateForm()) {
+      e.preventDefault();
+      return;
+    }
     setIsSent(true);
   };
 
-  // Send via Gmail with generated message and sender details
   const handleSendGmail = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (!validateForm()) return;
-
-    const recipientEmail = "endalegebeyehu824@gmail.com";
-    const subject = encodeURIComponent(`New Inquiry from ${formState.name} - ${formState.service}`);
-    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`);
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
-
-    window.open(gmailUrl, "_blank");
+    if (!validateForm()) {
+      e.preventDefault();
+      return;
+    }
     setIsSent(true);
   };
 
@@ -205,7 +204,7 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Social Icons: GitHub, LinkedIn, and Telegram */}
+            {/* Social Icons */}
             <div className="flex items-center gap-4 pt-6 relative z-20">
               <a 
                 href="https://github.com/Endalks" 
@@ -252,9 +251,9 @@ export function Contact() {
                   className="py-12 text-center space-y-4"
                 >
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Redirecting / Sent!</h4>
+                  <h4 className="text-2xl font-bold text-white">Message Prepared!</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
-                    Your message has been prepared and opened in Telegram/Gmail. Feel free to send another message!
+                    Your message has been successfully generated and opened in a new tab. Feel free to send another!
                   </p>
                   <button
                     type="button"
@@ -383,23 +382,29 @@ export function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                    <button
-                      type="button"
+                    {/* Direct Telegram Anchor Link to prevent browser blocking */}
+                    <a
+                      href={telegramHref}
+                      target="_blank"
+                      rel="noreferrer"
                       onClick={handleSendTelegram}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#229ED9] text-white rounded-xl font-bold hover:bg-[#1f8ebd] transition-all group/btn shadow-lg cursor-pointer"
                     >
                       Via Telegram
                       <TelegramIcon size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
 
-                    <button
-                      type="button"
+                    {/* Direct Gmail Anchor Link */}
+                    <a
+                      href={gmailHref}
+                      target="_blank"
+                      rel="noreferrer"
                       onClick={handleSendGmail}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all group/btn shadow-lg cursor-pointer"
                     >
                       Via Gmail
                       <Mail size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
+                    </a>
                   </div>
                 </div>
               )}
@@ -408,7 +413,7 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Telegram Widget: Fixed circular container with fast & smooth internal wave motion */}
+      {/* Floating Telegram Widget with Fast, Clear, and Non-stop Wave Motion */}
       <a
         href="https://t.me/abianas19"
         target="_blank"
@@ -417,9 +422,9 @@ export function Contact() {
         title="Chat on Telegram"
       >
         <motion.div
-          animate={{ y: [-4, 4, -4] }}
+          animate={{ y: [-6, 6, -6] }}
           transition={{ 
-            duration: 0.6, 
+            duration: 0.45, 
             repeat: Infinity, 
             repeatType: "loop",
             ease: "easeInOut" 
