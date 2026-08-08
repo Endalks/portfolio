@@ -25,48 +25,6 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  // -------------------------------------------------------------
-  // 1. SECURITY & INSPECT BLOCKING LOGIC
-  // -------------------------------------------------------------
-  useEffect(() => {
-    // Context Menu (Right-Click) Disable ማድረግ
-    const handleContextMenu = (e: MouseEvent) => {
-      e.preventDefault();
-    };
-
-    // Keyboard Shortcuts (F12, Ctrl+Shift+I, Ctrl+U, ወዘተ) Disable ማድረግ
-    const handleKeyDown = (e: KeyboardEvent) => {
-      // F12 ቁልፍ
-      if (e.key === "F12") {
-        e.preventDefault();
-      }
-      // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C (Inspect/Console)
-      if (
-        e.ctrlKey && 
-        e.shiftKey && 
-        (e.key === "I" || e.key === "i" || e.key === "J" || e.key === "j" || e.key === "C" || e.key === "c")
-      ) {
-        e.preventDefault();
-      }
-      // Ctrl+U (View Source Code)
-      if (e.ctrlKey && (e.key === "U" || e.key === "u")) {
-        e.preventDefault();
-      }
-      // Ctrl+S (Save Page)
-      if (e.ctrlKey && (e.key === "S" || e.key === "s")) {
-        e.preventDefault();
-      }
-    };
-
-    document.addEventListener("contextmenu", handleContextMenu);
-    document.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      document.removeEventListener("contextmenu", handleContextMenu);
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
-
   // Dynamic Auto-Generated Message Template Effect
   useEffect(() => {
     if (!hasEditedMessage) {
