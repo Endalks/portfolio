@@ -71,7 +71,7 @@ export function Contact() {
     return isValid;
   };
 
-  // Telegram መላኪያ ሎጂክ
+  // Telegram መላኪያ (በስልክ እና ፒሲ በአስተማማኝ ሁኔታ እንዲከፈት window.location.href ይጠቀማል)
   const handleSendTelegram = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -80,12 +80,13 @@ export function Contact() {
     
     const telegramUrl = `https://t.me/abianas19?text=${encodeURIComponent(formattedText)}`;
     
-    // አዲስ ታብ ከፍቶ ወደ ቴሌግራም እንዲወስድ እና መረጃውን እንዲጭን ያደርጋል
-    window.open(telegramUrl, "_blank");
     setIsSent(true);
+    setTimeout(() => {
+      window.location.href = telegramUrl;
+    }, 500);
   };
 
-  // Gmail መላኪያ ሎጂክ
+  // Gmail መላኪያ
   const handleSendGmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -95,8 +96,10 @@ export function Contact() {
     
     const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    window.open(gmailUrl, "_blank");
     setIsSent(true);
+    setTimeout(() => {
+      window.location.href = gmailUrl;
+    }, 500);
   };
 
   const handleResetForm = () => {
@@ -256,9 +259,9 @@ export function Contact() {
                   className="py-12 text-center space-y-4"
                 >
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
+                  <h4 className="text-2xl font-bold text-white">Redirecting...</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
-                    Thank you for reaching out. Your message has been opened in Telegram / Gmail!
+                    Opening your app with the message details!
                   </p>
                   <button
                     type="button"
