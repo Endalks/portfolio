@@ -25,11 +25,12 @@ export function Contact() {
   const [copied, setCopied] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
+  // Dynamic Auto-Generated Message Template Effect
   useEffect(() => {
     if (!hasEditedMessage) {
       const autoMessage = `Hello Endale,\n\nI am interested in building a ${formState.service} ${
         formState.budget ? `with a budget of ${formState.budget}` : 'and would like to request a quote'
-      }.\n\nLet\'s discuss further!`;
+      }.\n\nLet's discuss further!`;
 
       setFormState((prev) => ({ ...prev, message: autoMessage }));
     }
@@ -70,16 +71,35 @@ export function Contact() {
     return isValid;
   };
 
+  // Telegram መላኪያ (በስልክ እና ፒሲ በአስተማማኝ ሁኔታ እንዲከፈት window.location.href ይጠቀማል)
   const handleSendTelegram = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
+    const formattedText = `Hi Endale,\n\n*New Project Request*\n- Name: ${formState.name}\n- Email: ${formState.email}\n- Service: ${formState.service}\n- Budget: ${formState.budget}\n\nDetails:\n${formState.message}`;
+    
+    const telegramUrl = `https://t.me/abianas19?text=${encodeURIComponent(formattedText)}`;
+    
     setIsSent(true);
+    setTimeout(() => {
+      window.location.href = telegramUrl;
+    }, 500);
   };
 
+  // Gmail መላኪያ
   const handleSendGmail = (e: React.MouseEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
+
+    const subject = `New Inquiry from ${formState.name} (${formState.service})`;
+    const body = `Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\nProject Details:\n${formState.message}`;
+    
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
     setIsSent(true);
+    setTimeout(() => {
+      window.location.href = gmailUrl;
+    }, 500);
   };
 
   const handleResetForm = () => {
@@ -96,10 +116,10 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="py-24 relative overflow-hidden select-none">
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[150px] -z-10 mix-blend-screen" />
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="mb-16 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -118,6 +138,7 @@ export function Contact() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-16">
+          {/* Left Info Column */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -189,12 +210,12 @@ export function Contact() {
               </div>
             </div>
 
-            <div className="flex items-center gap-4 pt-6 relative z-20">
+            <div className="flex items-center gap-4 pt-6">
               <a 
                 href="https://github.com/Endalks" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer pointer-events-auto"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-primary hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer"
                 title="GitHub"
               >
                 <Github size={20} />
@@ -204,7 +225,7 @@ export function Contact() {
                 href="https://www.linkedin.com/in/endale-gebeyehu" 
                 target="_blank" 
                 rel="noreferrer" 
-                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#0077b5] hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer pointer-events-auto"
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#0077b5] hover:text-white transition-all transform hover:-translate-y-1 cursor-pointer"
                 title="LinkedIn"
               >
                 <Linkedin size={20} />
@@ -214,18 +235,9 @@ export function Contact() {
                 href="https://t.me/abianas19" 
                 target="_blank" 
                 rel="noreferrer" 
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 15, -15, 0],
-                  y: [0, -5, 0]
-                }}
-                transition={{ 
-                  duration: 1.5, 
-                  repeat: Infinity, 
-                  repeatType: "loop",
-                  ease: "easeInOut" 
-                }}
-                className="w-12 h-12 rounded-full bg-[#229ED9]/20 border border-[#229ED9]/50 flex items-center justify-center text-[#229ED9] hover:bg-[#229ED9] hover:text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(34,158,217,0.4)] pointer-events-auto relative z-30"
+                whileHover={{ scale: 1.15, rotate: 5 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-12 h-12 rounded-full glass flex items-center justify-center hover:bg-[#229ED9] hover:text-white transition-all cursor-pointer shadow-lg"
                 title="Telegram"
               >
                 <TelegramIcon size={20} />
@@ -233,6 +245,7 @@ export function Contact() {
             </div>
           </motion.div>
 
+          {/* Right Form Column */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -246,9 +259,9 @@ export function Contact() {
                   className="py-12 text-center space-y-4"
                 >
                   <CheckCircle2 size={56} className="text-green-500 mx-auto animate-bounce" />
-                  <h4 className="text-2xl font-bold text-white">Sent Successfully!</h4>
+                  <h4 className="text-2xl font-bold text-white">Redirecting...</h4>
                   <p className="text-muted-foreground max-w-sm mx-auto">
-                    Thank you for reaching out. I will get back to you soon!
+                    Opening your app with the message details!
                   </p>
                   <button
                     type="button"
@@ -261,6 +274,7 @@ export function Contact() {
               ) : (
                 <div className="space-y-6">
                   <div className="grid grid-cols-2 gap-6">
+                    {/* Name Input */}
                     <div className="relative group/input">
                       <input
                         type="text"
@@ -288,6 +302,7 @@ export function Contact() {
                       )}
                     </div>
 
+                    {/* Email Input */}
                     <div className="relative group/input">
                       <input
                         type="email"
@@ -348,6 +363,7 @@ export function Contact() {
                     </div>
                   </div>
 
+                  {/* Message Input */}
                   <div className="relative group/input pt-4">
                     <textarea
                       name="message"
@@ -376,29 +392,16 @@ export function Contact() {
                     )}
                   </div>
 
+                  {/* Action Buttons */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                    <motion.button
+                    <button
                       type="button"
                       onClick={handleSendTelegram}
-                      animate={{ 
-                        scale: [1, 1.03, 1],
-                        boxShadow: [
-                          "0 0 10px rgba(34,158,217,0.3)", 
-                          "0 0 25px rgba(34,158,217,0.7)", 
-                          "0 0 10px rgba(34,158,217,0.3)"
-                        ]
-                      }}
-                      transition={{ 
-                        duration: 1.8, 
-                        repeat: Infinity, 
-                        repeatType: "loop",
-                        ease: "easeInOut" 
-                      }}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#229ED9] text-white rounded-xl font-bold hover:bg-[#1f8ebd] transition-all group/btn shadow-lg cursor-pointer"
                     >
                       Via Telegram
                       <TelegramIcon size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </motion.button>
+                    </button>
 
                     <button
                       type="button"
