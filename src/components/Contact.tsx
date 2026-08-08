@@ -189,7 +189,7 @@ export function Contact() {
               </div>
             </div>
 
-            {/* Social Icons: GitHub, LinkedIn, and Telegram with exact same hover effect */}
+            {/* Social Icons: GitHub, LinkedIn, and Telegram with hover effect */}
             <div className="flex items-center gap-4 pt-6 relative z-20">
               <a 
                 href="https://github.com/Endalks" 
@@ -392,26 +392,27 @@ export function Contact() {
         </div>
       </div>
 
-      {/* Floating Constant Telegram Widget with Fast, Smooth Non-Stop Motion/Wave Animation */}
-      <motion.a
+      {/* Floating Telegram Widget: Container shape stays constant, only internal icon bounces smoothly */}
+      <a
         href="https://t.me/abianas19"
         target="_blank"
         rel="noreferrer"
-        animate={{ 
-          y: [0, -12, 0],
-          scale: [1, 1.05, 1]
-        }}
-        transition={{ 
-          duration: 1.2, 
-          repeat: Infinity, 
-          repeatType: "loop",
-          ease: "easeInOut" 
-        }}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#229ED9] text-white rounded-full flex items-center justify-center shadow-[0_4px_25px_rgba(34,158,217,0.7)] hover:bg-[#1f8ebd] hover:scale-110 transition-all cursor-pointer pointer-events-auto group"
         title="Chat on Telegram"
       >
-        <TelegramIcon size={26} />
-      </motion.a>
+        <motion.div
+          animate={{ y: [-3, 3, -3] }}
+          transition={{ 
+            duration: 1, 
+            repeat: Infinity, 
+            repeatType: "loop",
+            ease: "easeInOut" 
+          }}
+          className="flex items-center justify-center"
+        >
+          <TelegramIcon size={26} />
+        </motion.div>
+      </a>
     </section>
   );
 }
