@@ -124,8 +124,8 @@ export function Navbar() {
               <div className="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-between">
                 <h4 className="font-bold text-white">CV</h4>
                 <div className="flex gap-2 pt-4">
-                  <a href="/Endale_Gebeyehu_CV_2026.pdf" target="_blank" className="flex-1 text-center py-2 bg-primary/20 text-primary rounded-lg text-xs">View</a>
-                  <a href="/Endale_Gebeyehu_CV_2026.pdf" download className="flex-1 text-center py-2 bg-primary text-white rounded-lg text-xs">Download</a>
+                  <a href="/Endale_Gebeyehu_cv__2026.pdf" target="_blank" className="flex-1 text-center py-2 bg-primary/20 text-primary rounded-lg text-xs">View</a>
+                  <a href="/Endale_Gebeyehu_cv__2026.pdf" download className="flex-1 text-center py-2 bg-primary text-white rounded-lg text-xs">Download</a>
                 </div>
               </div>
               <div className="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-between">
