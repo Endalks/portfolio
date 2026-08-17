@@ -9,12 +9,12 @@ export function WhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on Telegram"
-      className="fixed bottom-6 right-6 z-50 p-3.5 rounded-full bg-[#229ED9] text-white shadow-lg hover:bg-[#1d8ebf] transition-all duration-200 flex items-center justify-center group cursor-pointer"
+      className="fixed bottom-6 right-6 z-[9999] p-4 rounded-full bg-[#0088cc] text-white shadow-[0_0_25px_rgba(0,136,204,0.7)] hover:bg-[#229ED9] hover:scale-110 transition-all duration-300 flex items-center justify-center group animate-bounce"
     >
-      <FaTelegramPlane size={24} />
+      <FaTelegramPlane size={30} className="text-white drop-shadow-md" />
 
       {/* Tooltip text */}
-      <span className="absolute right-16 bg-gray-900/90 text-white text-xs px-3 py-1.5 rounded-lg border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-md pointer-events-none">
+      <span className="absolute right-20 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#0088cc]/40 opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-xl pointer-events-none">
         Chat on Telegram
       </span>
     </a>
