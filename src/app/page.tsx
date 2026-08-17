@@ -8,7 +8,7 @@ import { Experience } from "@/components/Experience";
 import { Pricing } from "@/components/Pricing";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { WhatsAppButton } from "@/components/WhatsAppButton";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (

@@ -1,28 +1,32 @@
-export function Footer() {
-  const currentYear = new Date().getFullYear();
+"use client";
 
+import { motion } from "framer-motion";
+import { FaTelegramPlane } from "react-icons/fa";
+
+export default function WhatsAppButton() {
   return (
-    <footer className="py-8 border-t border-white/10 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[100px] bg-primary/20 blur-[100px] -z-10 rounded-full" />
-      
-      <div className="max-w-7xl mx-auto px-6 flex flex-col items-center justify-center text-center gap-4">
-        <div>
-          <a href="#" className="text-xl font-heading font-bold text-gradient">
-            Endalk Tech
-          </a>
-          <p className="text-sm text-muted-foreground mt-2">
-            Building digital experiences that convert.
-          </p>
-        </div>
+    <motion.a
+      href="https://t.me/abianas19"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat on Telegram"
+      animate={{ 
+        y: [0, -10, 0] 
+      }}
+      transition={{
+        duration: 2.5,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      whileHover={{ scale: 1.08 }}
+      whileTap={{ scale: 0.95 }}
+      className="fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full bg-[#0088cc] text-white shadow-[0_0_20px_rgba(0,136,204,0.6)] flex items-center justify-center group cursor-pointer"
+    >
+      <FaTelegramPlane size={26} className="text-white" />
 
-        <div className="flex flex-col items-center gap-1 text-sm text-muted-foreground">
-          <p>&copy; {currentYear} Endalk Tech. All rights reserved.</p>
-          <p className="text-xs text-primary/80 font-medium">
-            Designed and Maintenance by Endale Gebeyehu
-          </p>
-        </div>
-      </div>
-    </footer>
+      <span className="absolute right-16 hidden sm:group-hover:block bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#0088cc]/40 whitespace-nowrap shadow-xl pointer-events-none">
+        Chat on Telegram
+      </span>
+    </motion.a>
   );
 }
