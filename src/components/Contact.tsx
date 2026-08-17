@@ -97,7 +97,6 @@ export function Contact() {
     const subject = `New Inquiry from ${formState.name} - ${formState.service}`;
     const body = `Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\n${formState.message}`;
     
-    // በስልክ (Mobile) እና በኮምፒውተር (PC) ሁለቱንም ሰፖርት እንዲያደርግ mailto: መጠቀም የበለጠ አስተማማኝ ነው
     const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     setIsSent(true);
@@ -399,7 +398,7 @@ export function Contact() {
                       onClick={handleSendGmail}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all group/btn shadow-lg cursor-pointer"
                     >
-                      Via Gmail <Mail size5={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                      Via Gmail <Mail size={18} className="group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>
