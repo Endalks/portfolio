@@ -8,7 +8,7 @@ export function Hero() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(100); // ፊደላቱ በመጠኑ እና በሰከን ሰከን እያሉ በግልጽ እንዲጻፉ
+  const [typingSpeed, setTypingSpeed] = useState(40); // በጣም ፈጣን እንዲሆን ተደርጓል
   const roles = ["Software Engineer", "Full Stack Developer", "Graphics Designer", "UI/UX Designer"];
 
   useEffect(() => {
@@ -18,12 +18,12 @@ export function Hero() {
       setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
 
       if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 2000); // ቃሉ ሙሉ በሙሉ ሲጻፍ ለ 2 ሰከንድ በግልጽ ቆሞ እንዲታይ (እንዲነበብ)
-        setTypingSpeed(100);
+        setTimeout(() => setIsDeleting(true), 1000); // ቃሉ ሲጻፍ ለአጭር ጊዜ ቆሞ ወዲያው በፍጥነት እንዲቀጥል
+        setTypingSpeed(40);
       } else if (isDeleting && text === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
-        setTypingSpeed(100);
+        setTypingSpeed(40);
       }
     }, typingSpeed);
 
