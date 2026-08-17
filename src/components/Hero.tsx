@@ -8,7 +8,7 @@ export function Hero() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(100); // ፊደላቱ በመጠኑ እና በሰከን ሰከን እያሉ በግልጽ እንዲጻፉ
+  const [typingSpeed, setTypingSpeed] = useState(100);
   const roles = ["Software Engineer", "Full Stack Developer", "Graphics Designer", "UI/UX Designer"];
 
   useEffect(() => {
@@ -18,7 +18,7 @@ export function Hero() {
       setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
 
       if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 2000); // ቃሉ ሙሉ በሙሉ ሲጻፍ ለ 2 ሰከንድ በግልጽ ቆሞ እንዲታይ (እንዲነበብ)
+        setTimeout(() => setIsDeleting(true), 2000);
         setTypingSpeed(100);
       } else if (isDeleting && text === "") {
         setIsDeleting(false);
@@ -57,12 +57,19 @@ export function Hero() {
             Crafting robust software systems, stunning user interfaces, and creative graphic designs.
           </p>
 
+          {/* Buttons styled exactly like CV & Resume button */}
           <div className="flex flex-wrap gap-4 pt-4">
-            <a href="#projects" className="px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold flex items-center gap-2 transition-all shadow-lg shadow-purple-600/30">
-              View Projects <ArrowRight size={20} />
+            <a 
+              href="#projects" 
+              className="px-8 py-4 rounded-full bg-gradient-to-r from-primary to-accent text-white font-medium flex items-center gap-2 shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] transition-all cursor-pointer"
+            >
+              View Projects <ArrowRight size={18} />
             </a>
-            <a href="#contact" className="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 text-white font-bold flex items-center gap-2 transition-all">
-              <Mail size={20} className="text-purple-400" /> Hire Me
+            <a 
+              href="#contact" 
+              className="px-8 py-4 rounded-full glass border border-primary/30 text-white font-medium hover:bg-gradient-to-r hover:from-primary hover:to-accent transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:border-transparent flex items-center gap-2 cursor-pointer"
+            >
+              <Mail size={18} className="text-purple-400" /> Hire Me
             </a>
           </div>
         </div>
