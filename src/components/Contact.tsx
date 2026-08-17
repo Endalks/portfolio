@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Mail, Phone, MapPin, Copy, Check, CheckCircle2, AlertCircle } from "lucide-react";
 import { FaGithub as Github, FaLinkedin as Linkedin, FaTelegramPlane as TelegramIcon } from "react-icons/fa";
-import { supabase } from "@/lib/supabase";
 
 export function Contact() {
   const [formState, setFormState] = useState({ 
@@ -72,50 +71,35 @@ export function Contact() {
     return isValid;
   };
 
-  // Function to save contact message to Supabase
-  const saveToSupabase = async () => {
-    try {
-      const { error } = await supabase.from("contacts").insert([
-        {
-          name: formState.name,
-          email: formState.email,
-          message: `Service: ${formState.service} | Budget: ${formState.budget}\n\n${formState.message}`,
-        },
-      ]);
-
-      if (error) {
-        console.error("Error saving to Supabase:", error.message);
-      }
-    } catch (err) {
-      console.error("Unexpected error:", err);
-    }
-  };
-
-  const telegramUsername = "abianas19";
-  const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`;
-  const telegramHref = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
-
-  const recipientEmail = "endalegebeyehu824@gmail.com";
-  const subject = encodeURIComponent(`New Inquiry from ${formState.name} - ${formState.service}`);
-  const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\n\n${formState.message}`);
-  const gmailHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
-
-  const handleSendTelegram = async (e: React.MouseEvent) => {
+  // ቴሌግራም ላይ መልዕክት ለማድረስ
+  const handleSendTelegram = (e: React.MouseEvent) => {
     if (!validateForm()) {
       e.preventDefault();
       return;
     }
-    await saveToSupabase();
+
+    const telegramUsername = "abianas19";
+    const fullText = `Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\n${formState.message}`;
+    const telegramUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(fullText)}`;
+    
     setIsSent(true);
+    window.open(telegramUrl, "_blank");
   };
 
-  const handleSendGmail = async (e: React.MouseEvent) => {
+  // ጂሜይል ላይ መልዕክት ለማድረስ
+  const handleSendGmail = (e: React.MouseEvent) => {
     if (!validateForm()) {
       e.preventDefault();
       return;
     }
-    await saveToSupabase();
+
+    const recipientEmail = "endalegebeyehu824@gmail.com";
+    const subject = encodeURIComponent(`New Inquiry from ${formState.name} - ${formState.service}`);
+    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\n${formState.message}`);
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
+
     setIsSent(true);
+    window.open(gmailUrl, "_blank");
   };
 
   const handleResetForm = () => {
@@ -273,7 +257,7 @@ export function Contact() {
                   <CheckCircle2 size={64} className="text-green-500 animate-bounce mb-2" />
                   <h4 className="text-3xl font-bold text-white tracking-wide">Sent Successfully!</h4>
                   <p className="text-muted-foreground text-lg max-w-sm mx-auto leading-relaxed">
-                    Thank you for reaching out! I have received your message and will get back to you very soon.
+                    Thank you for reaching out! Your message has been prepared and redirected. I will get back to you very soon.
                   </p>
                   <button
                     type="button"
@@ -402,27 +386,21 @@ export function Contact() {
                   </div>
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                    <a
-                      href={telegramHref}
-                      target="_blank"
-                      rel="noreferrer"
+                    <button
+                      type="button"
                       onClick={handleSendTelegram}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-[#229ED9] text-white rounded-xl font-bold hover:bg-[#1f8ebd] transition-all group/btn shadow-lg cursor-pointer"
                     >
-                      Via Telegram
-                      <TelegramIcon size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </a>
+                      Via Telegram <TelegramIcon size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
 
-                    <a
-                      href={gmailHref}
-                      target="_blank"
-                      rel="noreferrer"
+                    <button
+                      type="button"
                       onClick={handleSendGmail}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all group/btn shadow-lg cursor-pointer"
                     >
-                      Via Gmail
-                      <Mail size={18} className="group-hover/btn:translate-x-1 transition-transform" />
-                    </a>
+                      Via Gmail <Mail size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                    </button>
                   </div>
                 </div>
               )}
