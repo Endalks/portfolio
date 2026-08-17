@@ -119,20 +119,29 @@ export function Navbar() {
             </button>
             <div className="text-center space-y-2">
               <h3 className="text-2xl font-bold text-white">My CV & Resume</h3>
+              <p className="text-muted-foreground text-sm">
+                Choose whether you want to view online or download my official documents.
+              </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-between">
-                <h4 className="font-bold text-white">CV</h4>
+                <div>
+                  <h4 className="font-bold text-white">CV</h4>
+                  <p className="text-xs text-muted-foreground mt-1">Official Curriculum Vitae</p>
+                </div>
                 <div className="flex gap-2 pt-4">
-                  <a href="/Endale_Gebeyehu_cv__2026.pdf" target="_blank" className="flex-1 text-center py-2 bg-primary/20 text-primary rounded-lg text-xs">View</a>
-                  <a href="/Endale_Gebeyehu_cv__2026.pdf" download className="flex-1 text-center py-2 bg-primary text-white rounded-lg text-xs">Download</a>
+                  <a href="/Endale-Gebeyehu-CV.pdf" target="_blank" rel="noreferrer" className="flex-1 text-center py-2 bg-primary/20 text-primary rounded-lg text-xs font-medium hover:bg-primary/30 transition-all">View</a>
+                  <a href="/Endale-Gebeyehu-CV.pdf" download="Endale-Gebeyehu-CV.pdf" className="flex-1 text-center py-2 bg-primary text-white rounded-lg text-xs font-medium hover:bg-primary/90 transition-all">Download</a>
                 </div>
               </div>
               <div className="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-between">
-                <h4 className="font-bold text-white">Resume</h4>
+                <div>
+                  <h4 className="font-bold text-white">Resume</h4>
+                  <p className="text-xs text-muted-foreground mt-1">Professional Resume</p>
+                </div>
                 <div className="flex gap-2 pt-4">
-                  <a href="/ENDALE_GEBEYEHU_Resume.pdf" target="_blank" className="flex-1 text-center py-2 bg-accent/20 text-accent rounded-lg text-xs">View</a>
-                  <a href="/ENDALE_GEBEYEHU_Resume.pdf" download className="flex-1 text-center py-2 bg-accent text-white rounded-lg text-xs">Download</a>
+                  <a href="/Endale-Gebeyehu-Resume.pdf" target="_blank" rel="noreferrer" className="flex-1 text-center py-2 bg-accent/20 text-accent rounded-lg text-xs font-medium hover:bg-accent/30 transition-all">View</a>
+                  <a href="/Endale-Gebeyehu-Resume.pdf" download="Endale-Gebeyehu-Resume.pdf" className="flex-1 text-center py-2 bg-accent text-white rounded-lg text-xs font-medium hover:bg-accent/90 transition-all">Download</a>
                 </div>
               </div>
             </div>
