@@ -8,7 +8,7 @@ export function Hero() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(70); // ፍጥነቱን ፈጣን አድርጌዋለሁ
+  const [typingSpeed, setTypingSpeed] = useState(100); // ፊደላቱ በመጠኑ እና በሰከን ሰከን እያሉ በግልጽ እንዲጻፉ
   const roles = ["Software Engineer", "Full Stack Developer", "Graphics Designer", "UI/UX Designer"];
 
   useEffect(() => {
@@ -18,12 +18,12 @@ export function Hero() {
       setText(isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1));
 
       if (!isDeleting && text === fullText) {
-        setIsDeleting(true);
-        setTypingSpeed(500); // ቃሉ ሙሉ ሲጻፍ የሚቆይበት ጊዜም ፈጣን እንዲሆን ተደርጓል
+        setTimeout(() => setIsDeleting(true), 2000); // ቃሉ ሙሉ በሙሉ ሲጻፍ ለ 2 ሰከንድ በግልጽ ቆሞ እንዲታይ (እንዲነበብ)
+        setTypingSpeed(100);
       } else if (isDeleting && text === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
-        setTypingSpeed(70); // ሲሰረዝም ፈጣን እንዲሆን
+        setTypingSpeed(100);
       }
     }, typingSpeed);
 
@@ -31,53 +31,46 @@ export function Hero() {
   }, [text, isDeleting, loopNum, typingSpeed]);
 
   return (
-    <section className="min-h-[80vh] pt-24 pb-10 md:pt-32 flex items-center relative isolate overflow-visible">
-      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-10 items-center">
+    <section className="min-h-[90vh] pt-32 pb-20 flex items-center relative">
+      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
         
         {/* Left Side: Content */}
-        <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
+        <div className="space-y-6">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             Available for new opportunities
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
+          <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
             Building Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Experiences</span> That Convert
           </h1>
 
-          <div className="h-10 flex items-center justify-center lg:justify-start gap-3">
-            <Cpu className="text-purple-400" size={22} />
-            <h2 className="text-xl sm:text-2xl font-semibold text-purple-400 flex items-center">
+          <div className="h-10 flex items-center gap-3">
+            <Cpu className="text-purple-400" size={24} />
+            <h2 className="text-2xl font-semibold text-purple-400 flex items-center">
               {text}<span className="animate-pulse ml-1">|</span>
             </h2>
           </div>
 
-          <p className="text-gray-400 text-base max-w-lg">
+          <p className="text-gray-400 text-lg max-w-lg">
             Crafting robust software systems, stunning user interfaces, and creative graphic designs.
           </p>
 
-          {/* Buttons styled like CV & Resume button */}
-          <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
-            <a 
-              href="#projects" 
-              className="px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-medium flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] cursor-pointer"
-            >
-              View Projects <ArrowRight size={18} />
+          <div className="flex flex-wrap gap-4 pt-4">
+            <a href="#projects" className="px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold flex items-center gap-2 transition-all shadow-lg shadow-purple-600/30">
+              View Projects <ArrowRight size={20} />
             </a>
-            <a 
-              href="#contact" 
-              className="px-6 py-3 rounded-full glass border border-primary/30 text-white font-medium hover:bg-gradient-to-r hover:from-primary hover:to-accent transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:border-transparent flex items-center gap-2 cursor-pointer"
-            >
-              <Mail size={18} className="text-purple-400" /> Hire Me
+            <a href="#contact" className="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 text-white font-bold flex items-center gap-2 transition-all">
+              <Mail size={20} className="text-purple-400" /> Hire Me
             </a>
           </div>
         </div>
 
-        {/* Right Side: Image with Glow & Floating Badges */}
-        <div className="flex justify-center items-center order-1 lg:order-2">
+        {/* Right Side: Image with Glow & Badges */}
+        <div className="flex justify-center items-center">
           <motion.div 
-            className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full flex items-center justify-center group"
+            className="relative w-80 h-80 rounded-full flex items-center justify-center group"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
           >
@@ -93,7 +86,6 @@ export function Hero() {
               className="w-[90%] h-[90%] rounded-full object-cover shadow-2xl"
             />
 
-            {/* Floating Badges Restored */}
             <motion.div 
               animate={{ y: [0, -8, 0] }}
               transition={{ repeat: Infinity, duration: 3 }}
