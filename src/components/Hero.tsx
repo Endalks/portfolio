@@ -5,7 +5,6 @@ import { ArrowRight, Mail } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export function Hero() {
-  // የ Typewriter አኒሜሽን ሎጂክ
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
@@ -32,70 +31,58 @@ export function Hero() {
   }, [text, isDeleting, loopNum]);
 
   return (
-    <section className="min-h-[90vh] pt-32 pb-20 flex items-center relative">
-      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 items-center">
+    // 'relative z-0' ጨምሬበታለሁ - ሜኑ ከዚህ በላይ እንዲሆን
+    <section className="min-h-[80vh] pt-24 pb-10 md:pt-32 flex items-center relative z-0 overflow-visible">
+      <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-10 items-center">
         
         {/* Left Side: Content */}
-        <div className="space-y-6">
+        <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             Available for new opportunities
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
             Building Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Experiences</span> That Convert
           </h1>
 
-          <h2 className="text-2xl font-semibold text-purple-400 h-10">
+          <h2 className="text-xl sm:text-2xl font-semibold text-purple-400 h-8 flex items-center justify-center lg:justify-start">
             {text}<span className="animate-pulse">|</span>
           </h2>
 
-          <p className="text-gray-400 text-lg max-w-lg">
+          <p className="text-gray-400 text-base max-w-lg">
             Crafting robust software systems, stunning user interfaces, and creative graphic designs.
           </p>
 
-          <div className="flex flex-wrap gap-4 pt-4">
-            <a href="#projects" className="px-8 py-4 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold flex items-center gap-2 transition-all">
-              View Projects <ArrowRight size={20} />
+          <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
+            <a href="#projects" className="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold flex items-center gap-2 transition-all">
+              View Projects <ArrowRight size={18} />
             </a>
-            <a href="#contact" className="px-8 py-4 rounded-xl border border-white/10 hover:bg-white/5 text-white font-bold flex items-center gap-2 transition-all">
-              <Mail size={20} /> Hire Me
+            <a href="#contact" className="px-6 py-3 rounded-xl border border-white/10 hover:bg-white/5 text-white font-bold flex items-center gap-2 transition-all">
+              <Mail size={18} /> Hire Me
             </a>
           </div>
         </div>
 
-        {/* Right Side: Image with Original Effects */}
-        <div className="flex justify-center items-center">
+        {/* Right Side: Image - order-1 ስላደረግኩት ስልክ ላይ ከላይ ይታያል */}
+        <div className="flex justify-center items-center order-1 lg:order-2">
           <motion.div 
-            className="relative w-80 h-80 rounded-full flex items-center justify-center group"
+            className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full flex items-center justify-center"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Animated Glow Ring */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 animate-spin opacity-70 blur-xl" />
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 10, ease: "linear" }}
+              className="absolute inset-0 rounded-full border-2 border-transparent border-t-purple-500 border-r-blue-500 blur-[2px]" 
+            />
             
             <img 
               src="/about-me.jpg" 
               alt="Endale Gebeyehu" 
-              className="relative w-[92%] h-[92%] rounded-full object-cover border-4 border-gray-900 shadow-2xl"
+              className="w-[90%] h-[90%] rounded-full object-cover shadow-2xl"
             />
-
-            {/* Floating Badges */}
-            <motion.div 
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 3 }}
-              className="absolute -top-4 -left-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-xl text-sm font-bold border border-gray-700"
-            >
-              Software Engineer
-            </motion.div>
-            <motion.div 
-              animate={{ y: [0, 10, 0] }}
-              transition={{ repeat: Infinity, duration: 3, delay: 1 }}
-              className="absolute -bottom-4 -right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-xl text-sm font-bold border border-gray-700"
-            >
-              Full Stack Developer
-            </motion.div>
           </motion.div>
         </div>
 
