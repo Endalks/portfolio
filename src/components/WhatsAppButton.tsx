@@ -26,8 +26,8 @@ export function WhatsAppButton() {
     >
       <FaTelegramPlane size={26} className="text-white" />
 
-      {/* Tooltip text */}
-      <span className="absolute right-16 bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#0088cc]/40 opacity-0 group-hover:opacity-100 transition-all duration-200 whitespace-nowrap shadow-xl pointer-events-none">
+      {/* Tooltip text - በሞባይል ስክሪን ላይ ተደራርቦ ችግር እንዳያመጣ ተስተካክሏል */}
+      <span className="absolute right-16 hidden sm:group-hover:block bg-gray-900 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-[#0088cc]/40 whitespace-nowrap shadow-xl pointer-events-none">
         Chat on Telegram
       </span>
     </motion.a>
