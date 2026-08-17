@@ -86,7 +86,7 @@ export function Contact() {
     window.open(telegramUrl, "_blank");
   };
 
-  // ጂሜይል ላይ መልዕክት ለማድረስ
+  // ጂሜይል በስልክም በኮምፒውተርም በትክክል እንዲከፈት የተስተካከለ function
   const handleSendGmail = (e: React.MouseEvent) => {
     if (!validateForm()) {
       e.preventDefault();
@@ -94,12 +94,14 @@ export function Contact() {
     }
 
     const recipientEmail = "endalegebeyehu824@gmail.com";
-    const subject = encodeURIComponent(`New Inquiry from ${formState.name} - ${formState.service}`);
-    const body = encodeURIComponent(`Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\n${formState.message}`);
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${recipientEmail}&su=${subject}&body=${body}`;
+    const subject = `New Inquiry from ${formState.name} - ${formState.service}`;
+    const body = `Name: ${formState.name}\nEmail: ${formState.email}\nService: ${formState.service}\nBudget: ${formState.budget}\n\n${formState.message}`;
+    
+    // በስልክ (Mobile) እና በኮምፒውተር (PC) ሁለቱንም ሰፖርት እንዲያደርግ mailto: መጠቀም የበለጠ አስተማማኝ ነው
+    const mailtoUrl = `mailto:${recipientEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
     setIsSent(true);
-    window.open(gmailUrl, "_blank");
+    window.location.href = mailtoUrl;
   };
 
   const handleResetForm = () => {
@@ -158,9 +160,7 @@ export function Contact() {
             <div className="space-y-6 pt-4 border-t border-white/10">
               <div className="flex items-center justify-between group">
                 <a 
-                  href="https://mail.google.com/mail/?view=cm&fs=1&to=endalegebeyehu824@gmail.com" 
-                  target="_blank"
-                  rel="noreferrer"
+                  href="mailto:endalegebeyehu824@gmail.com" 
                   className="flex items-center gap-4 text-muted-foreground hover:text-white transition-colors cursor-pointer"
                 >
                   <div className="w-12 h-12 rounded-full glass flex items-center justify-center group-hover:bg-primary/20 group-hover:border-primary/50 transition-all">
@@ -257,7 +257,7 @@ export function Contact() {
                   <CheckCircle2 size={64} className="text-green-500 animate-bounce mb-2" />
                   <h4 className="text-3xl font-bold text-white tracking-wide">Sent Successfully!</h4>
                   <p className="text-muted-foreground text-lg max-w-sm mx-auto leading-relaxed">
-                    Thank you for reaching out! Your message has been prepared and redirected. I will get back to you very soon.
+                    Thank you for reaching out! Your message has been prepared. I will get back to you very soon.
                   </p>
                   <button
                     type="button"
@@ -399,7 +399,7 @@ export function Contact() {
                       onClick={handleSendGmail}
                       className="flex-1 flex items-center justify-center gap-2 py-3.5 px-4 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 transition-all group/btn shadow-lg cursor-pointer"
                     >
-                      Via Gmail <Mail size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                      Via Gmail <Mail size5={18} className="group-hover/btn:translate-x-1 transition-transform" />
                     </button>
                   </div>
                 </div>
