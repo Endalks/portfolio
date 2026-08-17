@@ -8,7 +8,7 @@ export function Hero() {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [typingSpeed, setTypingSpeed] = useState(70); // ፍጥነቱን ፈጣን አድርጌዋለሁ
   const roles = ["Software Engineer", "Full Stack Developer", "Graphics Designer", "UI/UX Designer"];
 
   useEffect(() => {
@@ -19,21 +19,22 @@ export function Hero() {
 
       if (!isDeleting && text === fullText) {
         setIsDeleting(true);
-        setTypingSpeed(1000);
+        setTypingSpeed(500); // ቃሉ ሙሉ ሲጻፍ የሚቆይበት ጊዜም ፈጣን እንዲሆን ተደርጓል
       } else if (isDeleting && text === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
-        setTypingSpeed(150);
+        setTypingSpeed(70); // ሲሰረዝም ፈጣን እንዲሆን
       }
     }, typingSpeed);
 
     return () => clearInterval(ticker);
-  }, [text, isDeleting, loopNum]);
+  }, [text, isDeleting, loopNum, typingSpeed]);
 
   return (
     <section className="min-h-[80vh] pt-24 pb-10 md:pt-32 flex items-center relative isolate overflow-visible">
       <div className="max-w-7xl mx-auto px-6 w-full grid lg:grid-cols-2 gap-10 items-center">
         
+        {/* Left Side: Content */}
         <div className="space-y-6 text-center lg:text-left flex flex-col items-center lg:items-start order-2 lg:order-1">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-xs text-emerald-400">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -56,25 +57,27 @@ export function Hero() {
             Crafting robust software systems, stunning user interfaces, and creative graphic designs.
           </p>
 
+          {/* Buttons styled like CV & Resume button */}
           <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
             <a 
               href="#projects" 
-              className="px-6 py-3 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold flex items-center gap-2 transition-all shadow-lg shadow-purple-600/30"
+              className="px-6 py-3 rounded-full bg-gradient-to-r from-primary to-accent text-white font-medium flex items-center gap-2 transition-all shadow-[0_0_20px_rgba(139,92,246,0.3)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] cursor-pointer"
             >
               View Projects <ArrowRight size={18} />
             </a>
             <a 
               href="#contact" 
-              className="px-6 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-white font-bold flex items-center gap-2 transition-all shadow-lg"
+              className="px-6 py-3 rounded-full glass border border-primary/30 text-white font-medium hover:bg-gradient-to-r hover:from-primary hover:to-accent transition-all duration-300 shadow-[0_0_15px_rgba(139,92,246,0.2)] hover:shadow-[0_0_30px_rgba(139,92,246,0.6)] hover:border-transparent flex items-center gap-2 cursor-pointer"
             >
               <Mail size={18} className="text-purple-400" /> Hire Me
             </a>
           </div>
         </div>
 
+        {/* Right Side: Image with Glow & Floating Badges */}
         <div className="flex justify-center items-center order-1 lg:order-2">
           <motion.div 
-            className="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full flex items-center justify-center"
+            className="relative w-64 h-64 sm:w-72 sm:h-72 rounded-full flex items-center justify-center group"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.4 }}
           >
@@ -89,6 +92,22 @@ export function Hero() {
               alt="Endale Gebeyehu" 
               className="w-[90%] h-[90%] rounded-full object-cover shadow-2xl"
             />
+
+            {/* Floating Badges Restored */}
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 3 }}
+              className="absolute -top-2 -left-2 bg-gray-900/90 text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold border border-gray-700"
+            >
+              Software Engineer
+            </motion.div>
+            <motion.div 
+              animate={{ y: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 3, delay: 1 }}
+              className="absolute -bottom-2 -right-2 bg-gray-900/90 text-white px-3 py-1.5 rounded-lg shadow-xl text-xs font-bold border border-gray-700"
+            >
+              Full Stack Developer
+            </motion.div>
           </motion.div>
         </div>
 
