@@ -63,7 +63,7 @@ export function Hero() {
             </span>
           </motion.div>
 
-          {/* Main Title with Premium Font Styling */}
+          {/* Main Title */}
           <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white leading-[1.1] font-sans">
             Building Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">
@@ -85,19 +85,21 @@ export function Hero() {
             Crafting robust software systems, stunning user interfaces, and creative digital solutions with modern technologies.
           </p>
 
-          {/* Call to Action Buttons */}
-          <div className="flex flex-wrap items-center gap-4 pt-4">
+          {/* Call to Action Buttons (Updated with Premium CV/Resume Hover & Glow Effects) */}
+          <div className="flex flex-wrap items-center gap-5 pt-4">
+            {/* View Projects Button */}
             <a
               href="#projects"
-              className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold text-sm sm:text-base hover:from-blue-700 hover:to-indigo-700 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 shadow-xl shadow-blue-600/30 cursor-pointer"
+              className="px-8 py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white font-bold text-sm sm:text-base hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 shadow-[0_10px_25px_rgba(79,70,229,0.5)] hover:shadow-[0_15px_30px_rgba(79,70,229,0.8)] cursor-pointer group"
             >
               <span>View Projects</span>
-              <ArrowRight size={18} />
+              <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-300" />
             </a>
 
+            {/* Hire Me Button */}
             <a
               href="#contact"
-              className="px-8 py-4 rounded-xl border border-white/15 bg-white/5 hover:bg-white/10 hover:border-indigo-500/50 text-white font-semibold text-sm sm:text-base hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 backdrop-blur-md shadow-md cursor-pointer"
+              className="px-8 py-4 rounded-2xl border-2 border-indigo-500/40 bg-indigo-950/30 hover:bg-indigo-900/40 hover:border-indigo-400 text-white font-bold text-sm sm:text-base hover:scale-105 hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 backdrop-blur-xl shadow-[0_8px_20px_rgba(0,0,0,0.4)] cursor-pointer"
             >
               <Mail size={18} className="text-indigo-400" />
               <span>Hire Me</span>
@@ -109,7 +111,7 @@ export function Hero() {
         <div className="lg:col-span-5 flex justify-center items-center relative py-10">
           <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[360px] md:h-[360px] flex items-center justify-center">
             
-            {/* Outer Glowing Gradient Ring with Rotation Animation */}
+            {/* Outer Glowing Gradient Ring */}
             <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 opacity-60 blur-xl animate-pulse" />
 
             {/* Circular Image Wrapper */}
@@ -123,7 +125,7 @@ export function Hero() {
               />
             </div>
 
-            {/* Top-Left Badge: "Software Engineer" (Moved Outside with Unique Animation & Color) */}
+            {/* Top-Left Badge: "Software Engineer" */}
             <motion.div 
               initial={{ opacity: 0, x: -30, y: -20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
@@ -135,7 +137,7 @@ export function Hero() {
               <span>Software Engineer</span>
             </motion.div>
 
-            {/* Bottom-Right Badge: "Full Stack Developer" (Moved Outside with Unique Animation & Color) */}
+            {/* Bottom-Right Badge: "Full Stack Developer" */}
             <motion.div 
               initial={{ opacity: 0, x: 30, y: 20 }}
               animate={{ opacity: 1, x: 0, y: 0 }}
