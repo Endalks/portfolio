@@ -81,21 +81,24 @@ export function Hero() {
             Crafting robust software systems, stunning user interfaces, and creative graphic designs.
           </p>
 
-          {/* Call to Action Buttons */}
+          {/* Call to Action Buttons (CV/Resume Style Hover & Colors) */}
           <div className="flex flex-wrap items-center gap-4 pt-4">
+            {/* View Projects Button */}
             <a
               href="#projects"
-              className="px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 text-white font-medium hover:opacity-90 transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(99,102,241,0.4)]"
+              className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium hover:from-blue-700 hover:to-indigo-700 hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 shadow-lg shadow-blue-500/25 cursor-pointer"
             >
-              View Projects <ArrowRight size={18} />
+              <span>View Projects</span>
+              <ArrowRight size={18} />
             </a>
 
+            {/* Hire Me Button */}
             <a
               href="#contact"
-              className="px-7 py-3.5 rounded-full border border-white/10 bg-white/[0.03] hover:bg-white/10 transition-all text-white font-medium flex items-center gap-2 backdrop-blur-md"
+              className="px-7 py-3.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 hover:border-blue-500/50 text-white font-medium hover:scale-[1.02] hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2 backdrop-blur-md shadow-sm cursor-pointer"
             >
-              <Mail size={18} className="text-gray-300" />
-              Hire Me
+              <Mail size={18} className="text-blue-400" />
+              <span>Hire Me</span>
             </a>
           </div>
         </div>
