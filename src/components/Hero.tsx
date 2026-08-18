@@ -69,11 +69,11 @@ export function Hero() {
             Convert
           </h1>
 
-          {/* Typewriter Effect Line */}
-          <div className="flex items-center gap-3 text-purple-400 text-lg sm:text-xl font-mono pt-2 min-h-[40px]">
-            <Cpu className="w-5 h-5 text-purple-400 animate-pulse shrink-0" />
-            <span className="text-white font-semibold">{currentText}</span>
-            <span className="animate-pulse text-purple-400 font-bold">|</span>
+          {/* Typewriter Effect Line (Text size increased and color changed) */}
+          <div className="flex items-center gap-3 text-purple-400 text-xl sm:text-2xl font-mono pt-2 min-h-[40px]">
+            <Cpu className="w-6 h-6 text-indigo-400 animate-pulse shrink-0" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 font-bold">{currentText}</span>
+            <span className="animate-pulse text-indigo-400 font-bold">|</span>
           </div>
 
           {/* Description */}
@@ -121,22 +121,22 @@ export function Hero() {
               />
             </div>
 
-            {/* Top-Left Badge: "Software Engineer" */}
+            {/* Top-Left Badge: "Software Engineer" (Text Size Increased & Color Changed) */}
             <motion.div 
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="absolute -top-2 -left-4 bg-[#13111c]/90 border border-white/10 text-white text-xs font-semibold px-3.5 py-1.5 rounded-md shadow-lg backdrop-blur-md z-20"
+              className="absolute -top-2 -left-4 bg-[#13111c]/95 border border-indigo-500/30 text-indigo-300 text-sm font-bold px-4 py-2 rounded-lg shadow-xl backdrop-blur-md z-20"
             >
               Software Engineer
             </motion.div>
 
-            {/* Bottom-Right Badge: "Full Stack Developer" */}
+            {/* Bottom-Right Badge: "Full Stack Developer" (Text Size Increased & Color Changed) */}
             <motion.div 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5 }}
-              className="absolute -bottom-2 -right-4 bg-[#13111c]/90 border border-white/10 text-white text-xs font-semibold px-3.5 py-1.5 rounded-md shadow-lg backdrop-blur-md z-20"
+              className="absolute -bottom-2 -right-4 bg-[#13111c]/95 border border-blue-500/30 text-blue-300 text-sm font-bold px-4 py-2 rounded-lg shadow-xl backdrop-blur-md z-20"
             >
               Full Stack Developer
             </motion.div>
