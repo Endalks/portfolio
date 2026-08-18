@@ -85,7 +85,7 @@ export function Hero() {
             Crafting robust software systems, stunning user interfaces, and creative digital solutions with modern technologies.
           </p>
 
-          {/* Call to Action Buttons (Updated with Premium CV/Resume Hover & Glow Effects) */}
+          {/* Call to Action Buttons */}
           <div className="flex flex-wrap items-center gap-5 pt-4">
             {/* View Projects Button */}
             <a
@@ -107,15 +107,15 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Right Side: Circular Avatar & Floating Badges Outside the Circle */}
+        {/* Right Side: Circular Avatar & Floating Badges */}
         <div className="lg:col-span-5 flex justify-center items-center relative py-10">
           <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-[360px] md:h-[360px] flex items-center justify-center">
             
-            {/* Outer Glowing Gradient Ring */}
-            <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 opacity-60 blur-xl animate-pulse" />
+            {/* Outer Glowing Gradient Ring with Clockwise Rotation Animation */}
+            <div className="absolute -inset-3 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 opacity-70 blur-lg animate-spin" style={{ animationDuration: '10s' }} />
 
             {/* Circular Image Wrapper */}
-            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-indigo-500/40 bg-gray-900 shadow-2xl">
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-indigo-500/40 bg-gray-900 shadow-2xl z-10">
               <Image
                 src="/about-me.jpg"
                 alt="Endale Gebeyehu"
