@@ -48,8 +48,51 @@ export function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center w-full">
         
-        {/* Left Side: Content */}
-        <div className="lg:col-span-7 text-center lg:text-left space-y-5">
+        {/* Right Side / Image: On mobile, 'order-1' makes it appear FIRST (on top) */}
+        <div className="lg:col-span-5 order-1 lg:order-2 flex justify-center items-center relative py-4 sm:py-6">
+          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[350px] md:h-[350px] flex items-center justify-center">
+            
+            {/* Outer Glowing Gradient Ring with Clockwise Rotation Animation */}
+            <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 opacity-70 blur-md sm:blur-lg animate-spin" style={{ animationDuration: '10s' }} />
+
+            {/* Circular Image Wrapper */}
+            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-indigo-500/40 bg-gray-900 shadow-2xl z-10">
+              <Image
+                src="/about-me.jpg"
+                alt="Endale Gebeyehu"
+                fill
+                className="object-cover object-center scale-105 hover:scale-110 transition-transform duration-500"
+                priority
+              />
+            </div>
+
+            {/* Top-Left Badge: "Software Engineer" */}
+            <motion.div 
+              initial={{ opacity: 0, x: -20, y: -10 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
+              className="absolute -top-3 -left-2 sm:-top-5 sm:-left-6 bg-gradient-to-r from-indigo-950/95 to-purple-950/95 border border-indigo-400/40 text-indigo-300 text-[11px] sm:text-xs font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl shadow-xl backdrop-blur-xl z-30 flex items-center gap-1.5"
+            >
+              <Code2 size={14} className="text-indigo-400 animate-spin shrink-0" style={{ animationDuration: '6s' }} />
+              <span>Software Engineer</span>
+            </motion.div>
+
+            {/* Bottom-Right Badge: "Full Stack Developer" */}
+            <motion.div 
+              initial={{ opacity: 0, x: 20, y: 10 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
+              className="absolute -bottom-3 -right-2 sm:-bottom-5 sm:-right-6 bg-gradient-to-r from-blue-950/95 to-cyan-950/95 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl shadow-xl backdrop-blur-xl z-30 flex items-center gap-1.5"
+            >
+              <Sparkles size={14} className="text-cyan-400 animate-bounce shrink-0" />
+              <span>Full Stack Developer</span>
+            </motion.div>
+
+          </div>
+        </div>
+
+        {/* Left Side / Content: On mobile, 'order-2' makes it appear BELOW the image */}
+        <div className="lg:col-span-7 order-2 lg:order-1 text-center lg:text-left space-y-5">
           
           {/* Availability Badge */}
           <div className="inline-flex justify-center items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-md shadow-lg mx-auto lg:mx-0">
@@ -59,7 +102,7 @@ export function Hero() {
             </span>
           </div>
 
-          {/* Main Title (Responsive Sizes for Mobile & PC) */}
+          {/* Main Title */}
           <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black tracking-tight text-white leading-[1.2] lg:leading-[1.1] font-sans">
             Building Digital <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">
@@ -102,50 +145,6 @@ export function Hero() {
             </a>
           </div>
         </div>
-
-        {/* Right Side: Circular Avatar & Floating Badges */}
-        <div className="lg:col-span-5 flex justify-center items-center relative py-6 sm:py-10">
-          <div className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[350px] md:h-[350px] flex items-center justify-center">
-            
-            {/* Outer Glowing Gradient Ring with Clockwise Rotation Animation */}
-            <div className="absolute -inset-2.5 rounded-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 opacity-70 blur-md sm:blur-lg animate-spin" style={{ animationDuration: '10s' }} />
-
-            {/* Circular Image Wrapper */}
-            <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-indigo-500/40 bg-gray-900 shadow-2xl z-10">
-              <Image
-                src="/about-me.jpg"
-                alt="Endale Gebeyehu"
-                fill
-                className="object-cover object-center scale-105 hover:scale-110 transition-transform duration-500"
-                priority
-              />
-            </div>
-
-            {/* Top-Left Badge: "Software Engineer" (Responsive placement) */}
-            <motion.div 
-              initial={{ opacity: 0, x: -20, y: -10 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
-              className="absolute -top-3 -left-2 sm:-top-5 sm:-left-6 bg-gradient-to-r from-indigo-950/95 to-purple-950/95 border border-indigo-400/40 text-indigo-300 text-[11px] sm:text-xs font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl shadow-xl backdrop-blur-xl z-30 flex items-center gap-1.5"
-            >
-              <Code2 size={14} className="text-indigo-400 animate-spin shrink-0" style={{ animationDuration: '6s' }} />
-              <span>Software Engineer</span>
-            </motion.div>
-
-            {/* Bottom-Right Badge: "Full Stack Developer" (Responsive placement) */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20, y: 10 }}
-              animate={{ opacity: 1, x: 0, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, type: "spring", stiffness: 100 }}
-              className="absolute -bottom-3 -right-2 sm:-bottom-5 sm:-right-6 bg-gradient-to-r from-blue-950/95 to-cyan-950/95 border border-cyan-400/40 text-cyan-300 text-[11px] sm:text-xs font-bold px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl shadow-xl backdrop-blur-xl z-30 flex items-center gap-1.5"
-            >
-              <Sparkles size={14} className="text-cyan-400 animate-bounce shrink-0" />
-              <span>Full Stack Developer</span>
-            </motion.div>
-
-          </div>
-        </div>
-
       </div>
     </section>
   );
