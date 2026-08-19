@@ -30,7 +30,7 @@ export function Navbar() {
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "glass py-4 shadow-lg" : "bg-transparent py-6"
+          isScrolled ? "bg-gray-950/80 backdrop-blur-md py-4 shadow-lg border-b border-white/10" : "bg-transparent py-6"
         )}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -67,25 +67,28 @@ export function Navbar() {
           </nav>
 
           <button
-            className="md:hidden text-white cursor-pointer"
+            className="md:hidden text-white cursor-pointer p-1 focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Menu"
           >
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
 
+        {/* Mobile Menu with Solid Dark Background, Heavy Blur & Border */}
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            className="absolute top-full left-0 right-0 glass-card p-6 flex flex-col space-y-4 md:hidden border-t border-white/10 bg-gray-950/95 backdrop-blur-md shadow-2xl"
+            exit={{ opacity: 0, y: -15 }}
+            className="absolute top-full left-0 right-0 p-6 flex flex-col space-y-4 md:hidden bg-gray-950/95 backdrop-blur-2xl border-b border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.8)] z-50"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-muted-foreground hover:text-white transition-colors"
+                className="text-lg font-medium text-gray-300 hover:text-white transition-colors py-1 border-b border-white/5"
               >
                 {link.name}
               </a>
@@ -95,7 +98,7 @@ export function Navbar() {
                 setIsOpen(false);
                 setShowResumeModal(true);
               }}
-              className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium shadow-lg transition-all cursor-pointer"
+              className="w-full flex items-center justify-center gap-2 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-xl font-medium shadow-lg transition-all cursor-pointer mt-2"
             >
               <FileText size={18} />
               <span>View CV & Resume</span>
