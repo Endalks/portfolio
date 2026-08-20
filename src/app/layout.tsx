@@ -19,6 +19,9 @@ const poppins = Poppins({
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://endalktech.dev";
 
 export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
   themeColor: "#8b5cf6",
   colorScheme: "dark",
 };
@@ -26,27 +29,26 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Endalk Tech  | Premium Web Solutions",
-    template: "%s | Endalk Tech ",
+    default: "Endalk Tech | Premium Web Solutions",
+    template: "%s | Endalk Tech",
   },
   description:
-    "Endalk Tech  builds premium, high-conversion web applications, portfolios, and dynamic dashboards that drive scalable business growth.",
+    "Endalk Tech builds premium, high-conversion web applications, portfolios, and dynamic dashboards that drive scalable business growth.",
   keywords: [
     "Web Developer",
     "React",
     "Next.js",
     "Full Stack Developer",
-    "Krishna Kevat",
-    "Endalk Tech ",
+    "Endale Gebeyehu",
+    "Endalk Tech",
     "Portfolio",
     "Frontend",
     "Backend",
     "High-Conversion",
-    "Freelance Developer India",
   ],
-  authors: [{ name: "Krishna Kevat", url: siteUrl }],
-  creator: "Krishna Kevat",
-  publisher: "Endalk Tech ",
+  authors: [{ name: "Endale Gebeyehu", url: siteUrl }],
+  creator: "Endale Gebeyehu",
+  publisher: "Endalk Tech",
   robots: {
     index: true,
     follow: true,
@@ -62,26 +64,26 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    siteName: "Endalk Tech ",
-    title: "Endalk Tech  | Premium Web Solutions",
+    siteName: "Endalk Tech",
+    title: "Endalk Tech | Premium Web Solutions",
     description:
-      "Endalk Tech  builds premium, high-conversion web applications, portfolios, and dynamic dashboards that drive scalable business growth.",
+      "Endalk Tech builds premium, high-conversion web applications, portfolios, and dynamic dashboards that drive scalable business growth.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Endalk Tech  – Premium Web Solutions",
+        alt: "Endalk Tech – Premium Web Solutions",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Endalk Tech  | Premium Web Solutions",
+    title: "Endalk Tech | Premium Web Solutions",
     description:
       "Premium web solutions focusing on rapid growth and technical excellence.",
     images: ["/og-image.png"],
-    creator: "@Endalk Techtech",
+    creator: "@EndalkTech",
   },
   icons: {
     icon: "/favicon.ico",
@@ -109,4 +111,3 @@ export default function RootLayout({
     </html>
   );
 }
-
