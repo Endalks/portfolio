@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { Menu, X, Eye, Download, FileText } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -29,16 +29,16 @@ export function Navbar() {
     <>
       <header
         className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled ? "bg-gray-950/80 backdrop-blur-md py-4 shadow-lg border-b border-white/10" : "bg-transparent py-6"
+          "fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300",
+          isScrolled ? "bg-gray-950/90 backdrop-blur-md py-4 shadow-lg border-b border-white/10" : "bg-transparent py-6"
         )}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between w-full">
           <motion.a
             href="#"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="text-2xl font-heading font-bold text-gradient"
+            className="text-xl sm:text-2xl font-heading font-bold text-gradient"
           >
             Endalk Tech
           </motion.a>
@@ -75,20 +75,20 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Menu with Solid Dark Background, Heavy Blur & Border */}
+        {/* Mobile Menu */}
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            className="absolute top-full left-0 right-0 p-6 flex flex-col space-y-4 md:hidden bg-gray-950/95 backdrop-blur-2xl border-b border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.8)] z-50"
+            className="absolute top-full left-0 right-0 w-full p-6 flex flex-col space-y-4 md:hidden bg-gray-950/98 backdrop-blur-2xl border-b border-white/15 shadow-[0_20px_40px_rgba(0,0,0,0.8)] z-50"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="text-lg font-medium text-gray-300 hover:text-white transition-colors py-1 border-b border-white/5"
+                className="text-lg font-medium text-gray-300 hover:text-white transition-colors py-2 border-b border-white/5"
               >
                 {link.name}
               </a>
@@ -112,7 +112,7 @@ export function Navbar() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="glass bg-[#12121a]/95 border border-white/20 p-6 md:p-8 rounded-2xl max-w-lg w-full relative space-y-6 shadow-2xl"
+            className="glass bg-[#12121a]/95 border border-white/20 p-6 sm:p-8 rounded-2xl max-w-lg w-full relative space-y-6 shadow-2xl"
           >
             <button
               onClick={() => setShowResumeModal(false)}
@@ -121,29 +121,29 @@ export function Navbar() {
               <X size={24} />
             </button>
             <div className="text-center space-y-2">
-              <h3 className="text-2xl font-bold text-white">My CV & Resume</h3>
-              <p className="text-muted-foreground text-sm">
+              <h3 className="text-xl sm:text-2xl font-bold text-white">My CV & Resume</h3>
+              <p className="text-muted-foreground text-xs sm:text-sm">
                 Choose whether you want to view online or download my official documents.
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-between">
                 <div>
-                  <h4 className="font-bold text-white">CV</h4>
+                  <h4 className="font-bold text-white text-sm sm:text-base">CV</h4>
                   <p className="text-xs text-muted-foreground mt-1">Official Curriculum Vitae</p>
                 </div>
                 <div className="flex gap-2 pt-4">
-                  <a href="/Endale-Gebeyehu-CV.pdf" target="_blank" rel="noreferrer" className="flex-1 text-center py-2 bg-primary/20 text-primary rounded-lg text-xs font-medium hover:bg-primary/30 transition-all">View</a>
+                  <a href="/Endale-Gebeyehu-CV.pdf" target="_blank" rel="noreferrer" className="flex-1 text-center py-2 bg-primary/20 text-primary rounded-lg text-xs font-medium hover:bg-primary/35 transition-all">View</a>
                   <a href="/Endale-Gebeyehu-CV.pdf" download="Endale-Gebeyehu-CV.pdf" className="flex-1 text-center py-2 bg-primary text-white rounded-lg text-xs font-medium hover:bg-primary/90 transition-all">Download</a>
                 </div>
               </div>
               <div className="p-4 rounded-xl border border-white/10 bg-white/5 flex flex-col justify-between">
                 <div>
-                  <h4 className="font-bold text-white">Resume</h4>
+                  <h4 className="font-bold text-white text-sm sm:text-base">Resume</h4>
                   <p className="text-xs text-muted-foreground mt-1">Professional Resume</p>
                 </div>
                 <div className="flex gap-2 pt-4">
-                  <a href="/Endale-Gebeyehu-Resume.pdf" target="_blank" rel="noreferrer" className="flex-1 text-center py-2 bg-accent/20 text-accent rounded-lg text-xs font-medium hover:bg-accent/30 transition-all">View</a>
+                  <a href="/Endale-Gebeyehu-Resume.pdf" target="_blank" rel="noreferrer" className="flex-1 text-center py-2 bg-accent/20 text-accent rounded-lg text-xs font-medium hover:bg-accent/35 transition-all">View</a>
                   <a href="/Endale-Gebeyehu-Resume.pdf" download="Endale-Gebeyehu-Resume.pdf" className="flex-1 text-center py-2 bg-accent text-white rounded-lg text-xs font-medium hover:bg-accent/90 transition-all">Download</a>
                 </div>
               </div>
